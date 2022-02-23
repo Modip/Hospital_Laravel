@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\user\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function () {
-    return view('html.index');
-});
+// Route::get('/home', function () {
+//     return view('user.index');
+// });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/home', [UserController::class,'dashboard']);
