@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\user\AppoinementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,24 @@ use App\Http\Controllers\user\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/home', function () {
-//     return view('user.index');
-// });
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
 Route::get('/home', [UserController::class,'dashboard']);
+
+
+Route::post('/createAppointment',[AppoinementController::class, 'createAppointment']);
+
+
+
+
+
+
+
+
+
+
+
